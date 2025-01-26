@@ -1,0 +1,45 @@
+{
+  "name": "my-vue-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "axios": "^1.7.9",
+    "howler": "^2.2.4",
+    "pinia": "^2.3.0",
+    "socket.io-client": "^4.8.1",
+    "vue": "^3.5.13",
+    "vue-i18n": "^10.0.5",
+    "vue-router": "^4.5.0",
+    "vuetify": "^3.7.5"
+  },
+  "devDependencies": {
+    "@mdi/font": "^7.4.47",
+    "@rushstack/eslint-patch": "^1.10.4",
+    "@types/howler": "^2.2.12",
+    "@types/node": "^22.10.1",
+    "@types/vue": "^2.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.14.1-alpha.6",
+    "@typescript-eslint/parser": "^8.14.1-alpha.6",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.17.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "globals": "^15.14.0",
+    "postcss": "^8.4.49",
+    "sass": "^1.82.0",
+    "tailwindcss": "^3.4.16",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.19.1",
+    "vite": "^6.0.1",
+    "vite-plugin-eslint": "^1.8.1",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.1.10"
+  }
+}
