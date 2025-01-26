@@ -40,8 +40,8 @@ export default defineConfig(({ mode, command }) => {
       },
     },
     build: {
+      chunkSizeWarningLimit: 1000,
       assetsInlineLimit: 0,
-      outDir: '../public',
     },
   };
 });
