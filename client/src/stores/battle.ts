@@ -13,7 +13,6 @@ export const useBattleStore = defineStore('battle', {
 
       socket.on('updatePlayers', (roomId) => {
         this.roomId = roomId;
-        console.log(this.roomId);
       });
 
       socket.on('game:startGame', () => {

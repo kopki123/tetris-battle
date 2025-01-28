@@ -6,16 +6,6 @@ const rooms = {};
 const gameHandler = (io: Server, socket: Socket): void => {
   let assignedRoom = null;
 
-  // setInterval(() => {
-  //   const socketrooms = io.sockets.adapter.rooms;
-  //   console.log('所有房間狀態:');
-  //   for (const [room, sockets] of socketrooms) {
-  //     console.log(`房間名稱: ${room}, 連線數: ${sockets.size}`);
-  //   }
-  //   console.log(rooms);
-  //   console.log('--------------');
-  // }, 5000);
-
   socket.on('game:joinRoom', () => {
     for (const roomId in rooms) {
       if (rooms[roomId].length < MAX_PLAYERS_PER_ROOM) {
