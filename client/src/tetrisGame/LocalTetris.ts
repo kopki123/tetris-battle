@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Sound, useSoundStore } from '@/stores/sound';
 import {
   COLORS,
@@ -38,8 +39,13 @@ export class Game {
     space: boolean;
   };
   soundStore: ReturnType<typeof useSoundStore>;
+  keydownEvent: (this: Document, e: KeyboardEvent) => void;
+  keyupEvent: (this: Document, e: KeyboardEvent) => void;
+  elapsedTime: number;
 
   constructor(canvas: HTMLCanvasElement, isSingleMode = true) {
+    this.keydownEvent = () => {};
+    this.keyupEvent = () => {};
     this.isSingleMode = isSingleMode;
 
     this.canvas = canvas;
@@ -63,6 +69,7 @@ export class Game {
 
     this.dropCounter = 0;
     this.lastTime = 0;
+    this.elapsedTime = 0;
     this.moveCounter = {
       left: 0,
       right: 0
@@ -78,7 +85,12 @@ export class Game {
 
     this.soundStore = useSoundStore();
 
-    document.addEventListener('keydown', (e) => {
+    this.renderGameBoard();
+  }
+
+  bindKeyboardEvent() {
+    this.keydownEvent = (e) => {
+      console.log(e.key);
       if (this.isGameOver) {
         this.keys.space = false;
         this.keys.up = false;
@@ -119,9 +131,10 @@ export class Game {
           }
           break;
       }
-    });
+    };
 
-    document.addEventListener('keyup', (e) => {
+
+    this.keyupEvent = (e) => {
       switch (e.key) {
         case 'w':
         case 'ArrowUp':
@@ -147,9 +160,15 @@ export class Game {
           this.reset();
           break;
       }
-    });
+    };
 
-    this.renderGameBoard();
+    document.addEventListener('keydown', this.keydownEvent);
+    document.addEventListener('keyup', this.keyupEvent);
+  }
+
+  unbindKeyboardEvent() {
+    document.removeEventListener('keydown', this.keydownEvent);
+    document.removeEventListener('keyup', this.keyupEvent);
   }
 
   renderTile(x: number, y: number, color: string, strokeColor = 'black', lineWidth = 2) {
@@ -395,7 +414,6 @@ export class Game {
   }
 
   reset() {
-    // console.log('reset');
     this.gameBoard = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
     this.fallingPiece = null;
     const n = getRandomNumber(SHAPES.length);
@@ -425,6 +443,7 @@ export class Game {
   }
 
   start(callback = () => {}) {
+    this.bindKeyboardEvent();
     let countdown = 3;
     const countdownInterval = setInterval(() => {
       this.renderGameBoard();
@@ -474,6 +493,7 @@ export class Game {
           this.reset();
         });
 
+        this.unbindKeyboardEvent();
         cancelAnimationFrame(this.animationFrameId!);
         return;
       }
@@ -489,6 +509,7 @@ export class Game {
 
       const deltaTime = timestamp - this.lastTime;
       this.lastTime = timestamp;
+      this.elapsedTime += deltaTime;
 
       this.moveCounter.left += deltaTime;
       this.moveCounter.right += deltaTime;
@@ -513,6 +534,12 @@ export class Game {
       if (this.dropCounter > dropSpeed) {
         this.moveDown();
         this.dropCounter = 0;
+      }
+
+      // 每過10秒加快一次速度,最低速度限制為100
+      if (this.elapsedTime > 60000) {
+        this.dropSpeed = Math.max(100, this.dropSpeed - 20);
+        this.elapsedTime = 0;
       }
 
       this.renderGameBoard();
