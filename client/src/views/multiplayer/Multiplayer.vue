@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRouter } from 'vue-router';
 import { Game as LocalGame } from '@/tetrisGame/LocalTetris';
 import { Game as RemoteGame } from '@/tetrisGame/RemoteTetris';
 import { socket } from '@/socket';
 import { useBattleStore } from '@/stores/battle';
-import { useRouter } from 'vue-router';
 
 const battleStore = useBattleStore();
 const router = useRouter();

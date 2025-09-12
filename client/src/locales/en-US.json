@@ -1,4 +1,7 @@
 {
   "language": "English",
-  "lang_code": "en-US"
+  "lang_code": "en-US",
+  "1p_single_mode": "1p single mode",
+  "2p_multiplayer_mode": "2p multiplayer mode",
+  "waiting_for_player": "Waiting for player..."
 }

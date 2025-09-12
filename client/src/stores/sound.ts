@@ -31,8 +31,6 @@ export const useSoundStore = defineStore('sound', () => {
   watch(volume, (newValue) => {
     currentBgm.value?.volume(newValue);
 
-    console.log(currentBgm.value);
-
     Object.values(soundEffectMap).forEach((sound) => {
       sound.volume(1);
     });

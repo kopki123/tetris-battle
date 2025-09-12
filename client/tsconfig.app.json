@@ -9,6 +9,7 @@
       "@/*": ["./src/*"]
     },
     "baseUrl": ".",
+    "types": ["vite/client"],
 
     /* Bundler mode */
     "moduleResolution": "bundler",

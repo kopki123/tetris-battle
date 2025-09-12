@@ -1,19 +1,24 @@
 import { createI18n } from 'vue-i18n';
 
+interface ModuleImportInterface {
+  default: { [x: string]: string; };
+}
+
 export const SUPPORT_LOCALES: {
   value: string;
   label: string;
 }[] = [];
 
 function loadLocaleMessages () {
-  const locales = import.meta.glob('../locales/*.json', { eager: true }) as { [x: string]: any };
+  const locales = import.meta.glob<string>('../locales/*.json', { eager: true });
+  const localeEntries = Object.entries(locales);
+
   const messages: { [x: string]: { [x: string]: string; }; } = {};
 
-  // eslint-disable-next-line no-restricted-syntax, guard-for-in
-  for (const key in locales) {
-    const lang = key.replace(/(\.\.\/locales\/|\.json)/g, '');
+  for (const [path, moduleImport] of localeEntries) {
+    const lang = path.replace(/(\.\.\/locales\/|\.json)/g, '');
+    messages[lang] = (moduleImport as unknown as ModuleImportInterface).default;
 
-    messages[lang] = locales[key].default;
     SUPPORT_LOCALES.push({ value: lang, label: messages[lang].language });
   }
 

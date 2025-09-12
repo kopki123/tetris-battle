@@ -6,7 +6,6 @@ export default (io: Server): void => {
     console.log(`User connected: ${socket.id}`);
 
     // 將不同邏輯分模組處理
-    // chatHandler(io, socket);
     gameHandler(io, socket);
 
     socket.on('disconnect', () => {

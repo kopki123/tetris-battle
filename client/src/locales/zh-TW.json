@@ -1,4 +1,7 @@
 {
   "language": "繁體中文",
-  "lang_code": "zh-TW"
+  "lang_code": "zh-TW",
+  "1p_single_mode": "單人模式",
+  "2p_multiplayer_mode": "對戰模式",
+  "waiting_for_player": "等待其他玩家..."
 }

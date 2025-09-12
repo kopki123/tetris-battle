@@ -1,8 +1,6 @@
 import { Request } from 'express';
 
-const whitelist = [
-  // 'https://seamly-h5sc.onrender.com',
-];
+const whitelist = [];
 
 export const corsOptionsDelegate = (req: Request, callback) => {
   let corsOptions = {};

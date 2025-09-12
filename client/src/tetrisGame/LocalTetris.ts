@@ -90,7 +90,6 @@ export class Game {
 
   bindKeyboardEvent() {
     this.keydownEvent = (e) => {
-      console.log(e.key);
       if (this.isGameOver) {
         this.keys.space = false;
         this.keys.up = false;

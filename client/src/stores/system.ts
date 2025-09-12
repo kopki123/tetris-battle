@@ -26,7 +26,6 @@ export const useSystemStore = defineStore('system', {
   },
 });
 
-
 if (import.meta.hot) {
   import.meta.hot.accept(acceptHMRUpdate(useSystemStore, import.meta.hot));
 }
