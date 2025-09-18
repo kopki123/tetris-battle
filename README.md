@@ -5,17 +5,20 @@
 ---
 
 ## 技術棧
-- **前端**:
- * Vue 3
- * TypeScript
- * Vite
- * Pinia
- * Vue Router
- * Vuetify
- * Tailwind CSS
- * Socket.IO Client
+- **前端**: 
+   * Vue 3
+   * TypeScript
+   * Vite
+   * Pinia
+   * Vue Router
+   * Vuetify
+   * Tailwind CSS
+   * Socket.IO Client
 
-- **後端**: Node.js, Express, Socket.IO
+- **後端**: 
+   * Node.js
+   * Express
+   * Socket.IO
 
 ## 環境需求
 
@@ -50,7 +53,7 @@ npm run dev
 
 ## 建置與部署
 
-此後端在 `NODE_ENV=production` 時會把 `public/` 當作靜態目錄並套用 `history` 路由回退。部署步驟：
+此後端在 `NODE_ENV=production` 時會把 `public/` 當作靜態目錄並套用 `history` 路由回退。部署步驟建議：
 
 1) 建置前端（在 `client/`）：
 
